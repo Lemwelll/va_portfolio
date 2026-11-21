@@ -1,34 +1,30 @@
-// ----- Switch between pages (Home, Services, etc.) -----
-const pages = document.querySelectorAll(".page");
+// ----- Highlight the menu link of the section you are viewing -----
+const sections = document.querySelectorAll(".page");
 const menuLinks = document.querySelectorAll("[data-link]");
 
-function showPage() {
-  // get the page name from the link, like #services
-  let name = window.location.hash.replace("#", "");
-
-  // if the name doesn't match any page, go to home
-  const exists = Array.from(pages).some(function (page) {
-    return page.id === name;
-  });
-  if (!exists) {
-    name = "home";
-  }
-
-  // show only the chosen page
-  pages.forEach(function (page) {
-    page.classList.toggle("show", page.id === name);
-  });
-
-  // highlight the matching menu link
+function highlightMenu(name) {
   menuLinks.forEach(function (link) {
     link.classList.toggle("active", link.dataset.link === name);
   });
-
-  window.scrollTo(0, 0);
 }
 
-window.addEventListener("hashchange", showPage);
-showPage();
+// watches which section is in the middle of the screen while scrolling
+const observer = new IntersectionObserver(
+  function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        highlightMenu(entry.target.id);
+      }
+    });
+  },
+  { rootMargin: "-40% 0px -55% 0px" }
+);
+
+sections.forEach(function (section) {
+  observer.observe(section);
+});
+
+highlightMenu("home");
 
 // ----- Click a screenshot to view it larger -----
 const viewer = document.getElementById("viewer");

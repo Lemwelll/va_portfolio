@@ -6,6 +6,7 @@
     --gray: #E4E9F0;    /* Soft Gray */
     --white: #FFFFFF;   /* White */
     --muted: #4d5b73;   /* softer text color */
+    --menu-h: 70px;
   
     --heading-font: "Bricolage Grotesque", "Trebuchet MS", sans-serif;
     --body-font: "Source Sans 3", "Segoe UI", Arial, sans-serif;
@@ -20,8 +21,8 @@
   
   html {
     scroll-behavior: smooth;
-  }
-  
+    scroll-padding-top: var(--menu-h);
+}
   body {
     font-family: var(--body-font);
     font-size: 1.05rem;
@@ -110,14 +111,24 @@
     border-bottom-color: var(--gold);
   }
   
-  /* ===== PAGES (only one shows at a time) ===== */
+  /* ===== SECTIONS (each one fills the full screen) ===== */
   .page {
-    display: none;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - var(--menu-h));
+    min-height: calc(100svh - var(--menu-h));
+}
+  
+  /* make the content inside each section stretch and sit in the middle */
+  .page > div {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   
-  .page.show {
-    display: block;
+  .page > div > .wrap {
+    width: 100%;
   }
   
   .section {
@@ -187,7 +198,15 @@
   .hero {
     background: var(--navy);
     color: var(--white);
-    padding: 72px 0 80px;
+    padding: 40px 0;
+    min-height: calc(100vh - var(--menu-h));    /* fills the screen under the menu */
+    min-height: calc(100svh - var(--menu-h));   /* better on phones */
+    display: flex;
+    align-items: center;                        /* keeps your name and picture in the middle */
+  }
+  
+  .hero > .wrap {
+    width: 100%;
   }
   
   .hero-grid {
@@ -455,7 +474,7 @@
     }
   
     .hero {
-      padding: 48px 0 56px;
+      padding: 32px 0;
     }
   
     .section {
