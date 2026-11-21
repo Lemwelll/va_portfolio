@@ -8,7 +8,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Poppins:wght@800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,8 +16,10 @@
   <!-- ===== TOP MENU ===== -->
   <header class="topbar">
     <div class="wrap">
-      <a class="brand" href="#home">Lemuel <span>Bayson</span></a>
-      <nav>
+        <a class="brand" href="#home">
+            <img src="images/Logo.png" alt="Lemuel Bayson - Virtual Assistant">
+          </a>
+        <nav>
         <ul class="menu">
           <li><a href="#home" data-link="home">Home</a></li>
           <li><a href="#services" data-link="services">Services</a></li>
@@ -36,20 +38,69 @@
       <div class="hero">
         <div class="wrap hero-grid">
           <div>
-            <h1>Lemuel Bayson</h1>
-            <p class="role">Virtual Assistant</p>
+            <h1 class="name">
+                <span class="first">Lemuel</span>
+                <span class="last">Bayson</span>
+              </h1>
+              <div class="role">
+                <span class="role-main">Virtual Assistant</span>
+                <span class="role-sub">Data Entry &amp; Administrative Support</span>
+              </div>
             <p class="intro">I help business owners keep their content, data and clients organized, so nothing gets missed.</p>
             <div class="btn-row">
-              <a class="btn" href="#portfolio">See my work</a>
+                <a class="btn" href="#portfolio">See my work &rarr;</a>
               <a class="btn btn-ghost" href="#contact">Contact me</a>
             </div>
           </div>
-          <div class="frame">
-            <img src="images/trello-board.png" alt="Trello board showing a client content workflow">
+          <div class="frame app-slider" role="region" aria-roledescription="carousel" aria-label="Apps I use">
+            <div class="slides">
+          
+              <div class="slide">
+                <img src="images/workspace.png" alt="Google Workspace logo">
+                <h3>Google Workspace</h3>
+                <p>Docs, Sheets, Drive, Calendar and Gmail</p>
+              </div>
+          
+              <div class="slide">
+                <img src="images/trello.jpg" alt="Trello logo">
+                <h3>Trello</h3>
+                <p>Content calendars and client workflows</p>
+              </div>
+          
+              <div class="slide">
+                <img src="images/Claude_icon.png" alt="Claude logo">
+                <h3>Claude</h3>
+                <p>AI for drafting, research and organizing</p>
+              </div>
+              <div class="slide">
+                <img src="images/gmeet.png" alt="Google Meet logo">
+                <h3>Google Meet</h3>
+                <p>Client calls and virtual meetings</p>
+              </div>
+              
+              <div class="slide">
+                <img src="images/canva.jpeg" alt="Canva logo">
+                <h3>Canva</h3>
+                <p>Social media posts and branded graphics</p>
+              </div>
+              
+              <div class="slide">
+                <img src="images/meta.png" alt="Meta Business Suite logo">
+                <h3>Meta Business Suite</h3>
+                <p>Scheduling and managing Facebook and Instagram content</p>
+              </div>
+              
+              <div class="slide">
+                <img src="images/linkedin.png" alt="LinkedIn logo">
+                <h3>LinkedIn</h3>
+                <p>Professional posting and client outreach</p>
+              </div>
+          
+            </div>
+            <div class="dots"></div>
           </div>
-        </div>
-      </div>
-      
+  </section>
+
     <!-- ===== SERVICES ===== -->
     <section class="page" id="services">
       <div class="section">

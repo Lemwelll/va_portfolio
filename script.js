@@ -51,3 +51,57 @@ viewer.addEventListener("click", function (event) {
     viewer.close();
   }
 });
+
+// ----- App slider on the home page -----
+const slider = document.querySelector(".app-slider");
+
+if (slider) {
+  const track = slider.querySelector(".slides");
+  const slides = Array.from(track.children);
+  const dotsBox = slider.querySelector(".dots");
+  let index = 0;
+  let timer;
+
+  slides.forEach(function (_, n) {
+    const dot = document.createElement("button");
+    dot.setAttribute("aria-label", "Show slide " + (n + 1));
+    dot.addEventListener("click", function () {
+      go(n);
+      start();
+    });
+    dotsBox.appendChild(dot);
+  });
+
+  function go(n) {
+    index = (n + slides.length) % slides.length;
+    const prev = (index - 1 + slides.length) % slides.length;
+
+    slides.forEach(function (slide, k) {
+      slide.classList.toggle("is-active", k === index);
+      slide.classList.toggle("is-prev", k === prev);
+    });
+
+    dotsBox.querySelectorAll("button").forEach(function (d, k) {
+      d.classList.toggle("active", k === index);
+    });
+  }
+
+  function stop() {
+    clearInterval(timer);
+  }
+
+  function start() {
+    stop();
+    timer = setInterval(function () {
+      go(index + 1);
+    }, 1500);
+  }
+
+  slider.addEventListener("mouseenter", stop);
+  slider.addEventListener("mouseleave", start);
+
+  go(0);
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    start();
+  }
+}
