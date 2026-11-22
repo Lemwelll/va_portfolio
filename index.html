@@ -313,25 +313,65 @@
     </section>
 
     <!-- ===== ABOUT ME ===== -->
-    <section class="page" id="about">
-      <div class="section">
-        <div class="wrap about">
-          <div>
-            <h1 class="page-title">About Me</h1>
-            <p>Hi, I’m Lemuel Bayson, a virtual assistant based in the Philippines.</p>
-            <p>I focus on content support, admin and data work, and CRM tracking. I keep my files clean and my notes clear, so you can pick up my work and use it right away.</p>
-          </div>
-          <div class="panel">
-            <h3>How I work</h3>
-            <ul>
-              <li>I organize tasks on a board with due dates.</li>
-              <li>I back each recommendation with notes on where it came from.</li>
-              <li>I record the next step for every lead.</li>
-            </ul>
-          </div>
-        </div>
+<section class="page" id="about">
+  <div class="section">
+    <div class="wrap about">
+      <div>
+        <h1 class="page-title">About Me</h1>
+        <p>Hi, I’m Lemuel Bayson, a virtual assistant based in the Philippines.</p>
+        <p>I focus on content support, admin and data work, and CRM tracking. I keep my files clean and my notes clear, so you can pick up my work and use it right away.</p>
       </div>
-    </section>
+      <div class="panel">
+        <h3>How I work</h3>
+        <ul>
+          <li>I organize tasks on a board with due dates.</li>
+          <li>I back each recommendation with notes on where it came from.</li>
+          <li>I record the next step for every lead.</li>
+        </ul>
+      </div>
+    </div>
+
+ <!-- Certificates slider -->
+<div class="wrap certs">
+  <h2 class="certs-title">My Certificates</h2>
+
+  <div class="certs-track" id="certTrack">
+    <div class="certs-run" id="certRun">
+      <figure class="panel cert">
+        <button type="button" class="cert-img" data-cert="images/icett.jpeg" data-cap="Certificate title 1">
+          <img src="images/icett.jpeg" alt="Certificate title 1" loading="lazy">
+        </button>
+        <figcaption>
+          <h3>2026 12th International Conference on Education and Training Technologies</h3>
+          <p>ICETT, 2026</p>
+        </figcaption>
+      </figure>
+
+      <figure class="panel cert">
+        <button type="button" class="cert-img" data-cert="images/cybersec.jpg" data-cap="Certificate title 2">
+          <img src="images/cybersec.jpg" alt="Certificate title 2" loading="lazy">
+        </button>
+        <figcaption>
+          <h3>Introduction to Cybersecurity</h3>
+          <p>Cisco, 2024</p>
+        </figcaption>
+      </figure>
+
+      <figure class="panel cert">
+        <button type="button" class="cert-img" data-cert="images/JS-1.png" data-cap="Certificate title 3">
+          <img src="images/JS-1.png" alt="Certificate title 3" loading="lazy">
+        </button>
+        <figcaption>
+          <h3>JavaScript for Web Development</h3>
+          <p>Coursera, 2026</p>
+        </figcaption>
+      </figure>
+      <!-- copy a <figure> for each extra certificate -->
+    </div>
+  </div>
+</div>
+  </div>
+</section>
 
     <!-- ===== CONTACT ===== -->
     <section class="page" id="contact">
@@ -359,6 +399,14 @@
     </div>
     <img id="big" src="" alt="">
   </dialog>
+
+
+  <dialog id="certViewer" class="cert-viewer">
+    <img id="certBig" src="" alt="">
+    <p id="certCaption"></p>
+    <button type="button" id="certClose" aria-label="Close certificate">Close</button>
+  </dialog>
+
 
   <script src="script.js"></script>
 </body>

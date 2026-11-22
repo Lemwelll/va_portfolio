@@ -139,4 +139,78 @@ if (slider) {
   if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     start();
   }
-});
+}
+);
+
+// ----- Certificates running slider on the About page -----
+const certTrack = document.getElementById("certTrack");
+const certRun = document.getElementById("certRun");
+const certViewer = document.getElementById("certViewer");
+const certBig = document.getElementById("certBig");
+const certCaption = document.getElementById("certCaption");
+const certClose = document.getElementById("certClose");
+
+if (certTrack && certRun) {
+  const originals = Array.from(certRun.children);
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (!reduceMotion) {
+    // copy the certificates once so the loop never shows a gap
+    originals.forEach(function (card) {
+      const copy = card.cloneNode(true);
+      copy.setAttribute("aria-hidden", "true");
+      copy.querySelector("[data-cert]").tabIndex = -1;
+      certRun.appendChild(copy);
+    });
+
+    // about 8 seconds per certificate; lower the number to run faster
+    certRun.style.setProperty("--cert-speed", originals.length * 8 + "s");
+  }
+
+  // click any certificate (original or copy) to view it larger
+  certRun.addEventListener("click", function (event) {
+    const button = event.target.closest("[data-cert]");
+    if (!button) return;
+
+    certBig.src = button.dataset.cert;
+    certBig.alt = button.dataset.cap;
+    certCaption.textContent = button.dataset.cap;
+    certViewer.showModal();
+  });
+
+  certClose.addEventListener("click", function () {
+    certViewer.close();
+  });
+
+  // clicking outside the image also closes it
+  certViewer.addEventListener("click", function (event) {
+    if (event.target === certViewer) {
+      certViewer.close();
+    }
+  });
+}    // highlight the card that is closest to the middle of the slider
+const allCards = Array.from(certRun.children);
+
+function highlightCenter() {
+  const box = certTrack.getBoundingClientRect();
+  const middle = box.left + box.width / 2;
+  let closest = null;
+  let shortest = Infinity;
+
+  allCards.forEach(function (card) {
+    const rect = card.getBoundingClientRect();
+    const distance = Math.abs(rect.left + rect.width / 2 - middle);
+    if (distance < shortest) {
+      shortest = distance;
+      closest = card;
+    }
+  });
+
+  allCards.forEach(function (card) {
+    card.classList.toggle("is-focus", card === closest);
+  });
+
+  requestAnimationFrame(highlightCenter);
+}
+
+highlightCenter();

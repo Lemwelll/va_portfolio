@@ -725,7 +725,146 @@
     padding: 10px 0;
     border-top: 1px solid rgba(255, 255, 255, 0.18);
   }
-  
+/* Certificates running slider */
+.certs { margin-top: 64px; }
+
+.certs-title {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.certs-track {
+  overflow: hidden;
+  padding: 16px 0;
+  /* edges fade to transparent: cards disappear on the left, appear on the right */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%);
+}
+
+.certs-run {
+  display: flex;
+  width: max-content;
+  animation: certs-run var(--cert-speed, 30s) linear infinite;
+}
+
+.certs-track:hover .certs-run,
+.certs-track:focus-within .certs-run {
+  animation-play-state: paused;
+}
+
+@keyframes certs-run {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.cert {
+  flex: 0 0 auto;
+  width: clamp(260px, 30vw, 380px);
+  margin: 0 24px 0 0;
+  padding: 20px;
+  opacity: 0.4;
+  transform: scale(0.94);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* the card in the middle */
+.cert.is-focus {
+  opacity: 1;
+  transform: scale(1.04);
+}
+.cert-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: var(--white);
+  overflow: hidden;
+  cursor: zoom-in;
+}
+
+.cert-img:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.cert-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.cert figcaption { padding-top: 16px; }
+.cert figcaption h3 { font-size: 1.3rem; margin-bottom: 4px; }
+.cert figcaption p { font-size: 1.1rem; }
+
+@media (max-width: 600px) {
+  .about p { font-size: 1.15rem; }
+}
+
+/* no motion: becomes a swipe row */
+@media (prefers-reduced-motion: reduce) {
+  .certs-track {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .certs-run { animation: none; }
+  .cert { opacity: 1; transform: none; }
+}
+/* Certificate viewer */
+.cert-viewer {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: fit-content;
+  height: fit-content;
+  border: 0;
+  border-radius: 14px;
+  padding: 20px;
+  background: var(--navy);
+  color: var(--white);
+  max-width: min(92vw, 1000px);
+  max-height: 92vh;
+  text-align: center;
+}
+.cert-viewer::backdrop {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.cert-viewer img {
+  display: block;
+  max-width: 100%;
+  max-height: 72vh;
+  margin: 0 auto;
+  border-radius: 8px;
+  background: var(--white);
+}
+
+.cert-viewer p {
+  font-size: 1.2rem;
+  margin: 14px 0;
+}
+
+.cert-viewer button {
+  padding: 10px 28px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--gold);
+  color: var(--navy);
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.cert-viewer button:focus-visible {
+  outline: 3px solid var(--white);
+  outline-offset: 3px;
+}
   /* ===== CONTACT ===== */
   .contact-list {
     list-style: none;
