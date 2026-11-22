@@ -104,4 +104,39 @@ if (slider) {
   if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     start();
   }
-}
+}document.querySelectorAll(".photo-fade").forEach(function (box) {
+  const photos = Array.from(box.querySelectorAll(".photo"));
+  if (photos.length < 2) return;
+
+  let current = 0;
+  let timer;
+
+  function show(n) {
+    photos[current].classList.remove("is-active");
+    photos[current].tabIndex = -1;
+    current = n;
+    photos[current].classList.add("is-active");
+    photos[current].tabIndex = 0;
+  }
+
+  function stop() {
+    clearInterval(timer);
+  }
+
+  function start() {
+    stop();
+    timer = setInterval(function () {
+      show((current + 1) % photos.length);
+    }, 2000);
+  }
+
+  // pauses while the mouse or keyboard focus is on the photo
+  box.addEventListener("mouseenter", stop);
+  box.addEventListener("mouseleave", start);
+  box.addEventListener("focusin", stop);
+  box.addEventListener("focusout", start);
+
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    start();
+  }
+});
